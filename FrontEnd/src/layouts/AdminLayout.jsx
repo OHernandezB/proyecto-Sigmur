@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { LayoutDashboard, ListTodo, Settings, LogOut, Shield } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 
 export function AdminLayout({ children }) {
     const location = useLocation();
+    const { logout } = useAuth();
 
     const menuItems = [
         { path: "/admin", label: "Dashboard", icon: <LayoutDashboard size={20} /> },
@@ -44,6 +46,7 @@ export function AdminLayout({ children }) {
                 <div className="p-4 border-t border-slate-100">
                     <Link
                         to="/"
+                        onClick={logout}
                         className="flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-all duration-200"
                     >
                         <LogOut size={20} />
@@ -74,4 +77,4 @@ export function AdminLayout({ children }) {
             </main>
         </div>
     );
-}
+}

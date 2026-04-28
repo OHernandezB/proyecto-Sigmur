@@ -11,9 +11,7 @@ import {
     X, 
     Camera, 
     Send,
-    Map as MapIcon
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -122,24 +120,17 @@ export function CiudadanoPage() {
     };
 
     return (
-        <div className="h-screen w-full flex flex-col bg-slate-50 overflow-hidden font-sans">
-            <div className="flex-1 relative">
+        <div className="h-full w-full flex flex-col bg-slate-50 overflow-hidden font-sans">
+            <div className="flex-1 relative min-h-[calc(100vh-4rem)] md:min-h-screen">
                 {/* 🔔 MENSAJES DE ESTADO */}
-                <AnimatePresence>
-                    {mensaje && (
-                        <motion.div 
-                            initial={{ y: -50, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -50, opacity: 0 }}
-                            className="absolute top-20 left-1/2 -translate-x-1/2 z-[2000] bg-white border border-slate-200 px-6 py-3 rounded-full shadow-xl flex items-center gap-3"
-                        >
-                            <span className="text-sm font-medium text-slate-700">{mensaje}</span>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                {mensaje && (
+                    <div className="absolute top-20 left-1/2 -translate-x-1/2 z-[2000] bg-white border border-slate-200 px-6 py-3 rounded-full shadow-xl flex items-center gap-3">
+                        <span className="text-sm font-medium text-slate-700">{mensaje}</span>
+                    </div>
+                )}
 
                 {/* 🏷️ HEADER FLOATING */}
-                <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-[1000]">
+                <div className="absolute top-4 md:top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-[1000]">
                     <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl p-4 shadow-2xl shadow-slate-200/50 flex items-center justify-between">
                         <div>
                             <h1 className="text-xl font-extrabold bg-gradient-to-r from-indigo-600 to-indigo-400 bg-clip-text text-transparent tracking-tight">SIGMUR</h1>
@@ -231,24 +222,14 @@ export function CiudadanoPage() {
                 </button>
 
                 {/* 📱 BOTTOM SHEET MODAL */}
-                <AnimatePresence>
-                    {openModal && (
-                        <div className="absolute inset-0 z-[2000] flex items-end justify-center px-4 sm:px-0 overflow-hidden">
-                            <motion.div 
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                onClick={() => setOpenModal(false)}
-                                className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
-                            />
-                            
-                            <motion.div 
-                                initial={{ y: "100%" }}
-                                animate={{ y: 0 }}
-                                exit={{ y: "100%" }}
-                                transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                                className="relative bg-white w-full max-w-md rounded-t-[32px] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
-                            >
+                {openModal && (
+                    <div className="absolute inset-0 z-[2000] flex items-end justify-center px-4 sm:px-0 overflow-hidden">
+                        <div
+                            onClick={() => setOpenModal(false)}
+                            className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+                        />
+                        
+                        <div className="relative bg-white w-full max-w-md rounded-t-[32px] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
                                 <div className="p-6 overflow-y-auto">
                                     <div className="flex justify-between items-start mb-6">
                                         <div>
@@ -354,12 +335,11 @@ export function CiudadanoPage() {
                                         Enviar Reporte
                                     </button>
                                 </div>
-                            </motion.div>
                         </div>
-                    )}
-                </AnimatePresence>
+                    </div>
+                )}
             </div>
         </div>
     );
 }
-
+
