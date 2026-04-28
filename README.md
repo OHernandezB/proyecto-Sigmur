@@ -201,9 +201,11 @@ El repositorio contiene:
 
 ## Equipo
 
-- Omar Hernandez
-- Tomás Velazquez
 - Pamela Albanese
+- Johan Gonzalez
+- Omar Hernández
+- Tomás Velazquez
+
 
 ## Licencia
 
